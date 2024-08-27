@@ -18,26 +18,20 @@ import { Link } from "react-router-dom";
 const Sidebar = () => {
   const SIDEBAR_ITEMS = [
     {
+      id: 1,
       name: "DASHBOARD",
       icon: Blocks,
       href: "/",
     },
 
-    { name: "ICONS", icon: Settings, href: "/settings" },
-    {
-      name: "MAP",
-      icon: Pin,
-      href: "/map",
-    },
-    { name: "NOTIFICATION", icon: Bell },
-    { name: "USER PROFILE", icon: User, href: "/users" },
-    {
-      name: "TABLE LIST",
-      icon: Table,
-    },
-    { name: "TYPOGRAPHY", icon: TableOfContents },
-    { name: "RTL SUPPORT", icon: LoaderPinwheel },
-    { name: "UPGRADE TO PRO", icon: Rocket },
+    { id: 2, name: "ICONS", icon: Settings, href: "/settings" },
+    { id: 3, name: "MAP", icon: Pin, href: "/coin" },
+    { id: 4, name: "NOTIFICATION", icon: Bell },
+    { id: 5, name: "USER PROFILE", icon: User, href: "/users" },
+    { id: 6, name: "TABLE LIST", icon: Table },
+    { id: 7, name: "TYPOGRAPHY", icon: TableOfContents },
+    { id: 8, name: "RTL SUPPORT", icon: LoaderPinwheel },
+    { id: 9, name: "UPGRADE TO PRO", icon: Rocket },
   ];
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -61,7 +55,7 @@ const Sidebar = () => {
 
         <nav className="mt-8 flex-grow">
           {SIDEBAR_ITEMS.map((item, index) => (
-            <Link key={item.href} to={item.href}>
+            <Link key={item.id} to={item.href}>
               <motion.div className="flex items-center p-4 text-sm font-medium rounded-lg hover:bg-blue-600 transition-colors mb-2">
                 <item.icon
                   size={20}

@@ -3,6 +3,10 @@ import Header from "../components/common/Header";
 import StatCard from "../components/common/StatCard";
 import { AnimatePresence, motion } from "framer-motion";
 import { Send } from "lucide-react";
+import MotionOverviewChart from "../components/overview/MotionOverviewChart";
+import LatencyOverviewChart from "../components/overview/LatencyOverviewChart";
+import BatteryOverviewChart from "../components/overview/BatteryOverviewChart";
+import InternetOverviewChart from "../components/overview/InternetOverviewChart";
 
 const OverviewPage = () => {
   return (
@@ -16,8 +20,18 @@ const OverviewPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          <StatCard name="Internet Sensor Graph" icon={Send} color="green" />
+          {/* <StatCard name="Internet Sensor Graph" icon={Send} color="green" /> */}
         </motion.div>
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 mb-8">
+          <InternetOverviewChart />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+          <MotionOverviewChart />
+          <LatencyOverviewChart />
+        </div>
+        <div className="grid grid-cols-1 lg:grid-cols-1 gap-8">
+          <BatteryOverviewChart />
+        </div>
       </main>
     </div>
   );

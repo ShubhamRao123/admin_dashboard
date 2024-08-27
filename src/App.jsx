@@ -1,7 +1,6 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
 import OverviewPage from "./pages/OverviewPage";
-import ProductsPage from "./pages/ProductsPage";
 import Sidebar from "./components/Sidebar";
 
 const App = () => {
@@ -14,7 +13,6 @@ const App = () => {
       <Sidebar />
       <Routes>
         <Route path="/" element={<OverviewPage />} />
-        <Route path="/products" element={<ProductsPage />} />
       </Routes>
     </div>
   );
