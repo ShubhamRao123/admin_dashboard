@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-function StatCard({ name, icon: Icon, value, color }) {
+const StatCard = ({ name, icon: Icon, value, color }) => {
   return (
     <motion.div
       className="bg-gray-800 bg-opacity-50 backdrop-blur-md overflow-hidden shadow-lg rounded-xl border border-gray-700"
@@ -73,6 +73,6 @@ function StatCard({ name, icon: Icon, value, color }) {
       </div>
     </motion.div>
   );
-}
+};
 
 export default StatCard;

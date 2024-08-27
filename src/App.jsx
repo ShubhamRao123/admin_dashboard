@@ -4,7 +4,7 @@ import OverviewPage from "./pages/OverviewPage";
 import ProductsPage from "./pages/ProductsPage";
 import Sidebar from "./components/Sidebar";
 
-function App() {
+const App = () => {
   return (
     <div className="flex h-screen bg-gray-900 text-gray-100 overflow-hidden">
       <div className="fixed inset-0 z-0">
@@ -18,6 +18,6 @@ function App() {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

@@ -15,7 +15,7 @@ import {
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
-function Sidebar() {
+const Sidebar = () => {
   const SIDEBAR_ITEMS = [
     {
       name: "DASHBOARD",
@@ -88,6 +88,6 @@ function Sidebar() {
       </div>
     </motion.div>
   );
-}
+};
 
 export default Sidebar;

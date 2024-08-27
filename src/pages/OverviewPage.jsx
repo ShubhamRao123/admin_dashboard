@@ -4,7 +4,7 @@ import StatCard from "../components/common/StatCard";
 import { AnimatePresence, motion } from "framer-motion";
 import { Send } from "lucide-react";
 
-function OverviewPage() {
+const OverviewPage = () => {
   return (
     <div className="flex-1 overflow-auto relative z-10">
       <Header title="Overview" />
@@ -21,6 +21,6 @@ function OverviewPage() {
       </main>
     </div>
   );
-}
+};
 
 export default OverviewPage;
