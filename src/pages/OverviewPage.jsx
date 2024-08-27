@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "../components/common/Header";
-import StatCard from "../components/common/StatCard";
 import { AnimatePresence, motion } from "framer-motion";
 import { Send } from "lucide-react";
 import MotionOverviewChart from "../components/overview/MotionOverviewChart";
@@ -19,9 +18,7 @@ const OverviewPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-        >
-          {/* <StatCard name="Internet Sensor Graph" icon={Send} color="green" /> */}
-        </motion.div>
+        ></motion.div>
         <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 mb-8">
           <InternetOverviewChart />
         </div>

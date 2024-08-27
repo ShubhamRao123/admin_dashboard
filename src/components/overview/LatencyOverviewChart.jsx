@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   LineChart,
   Line,
@@ -10,22 +10,28 @@ import {
 } from "recharts";
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
-const internetData = [
-  { name: "9:00", sales: 0 },
-  { name: "10:00", sales: 20 },
-  { name: "11:00", sales: 30 },
-  { name: "12:00", sales: 40 },
-  { name: "13:00", sales: 10 },
-  { name: "14:00", sales: 50 },
-  { name: "15:00", sales: 60 },
-  { name: "16:00", sales: 70 },
-  { name: "17:00", sales: 80 },
-  { name: "18:00", sales: 90 },
-  { name: "19:00", sales: 100 },
-  { name: "20:00", sales: 200 },
-];
+import latencyData from "../../data/latencyData";
 
 const LatencyOverviewChart = () => {
+  const [selectedRange, setSelectedRange] = useState("last3Hours");
+
+  const filterDataByRange = () => {
+    switch (selectedRange) {
+      case "last3Hours":
+        return latencyData.slice(0, 6); // 6 breakpoints for the last 3 hours
+      case "last24Hours":
+        return latencyData.slice(0, 12); // Sample of 12 data points for the last 24 hours
+      case "last7Days":
+        return latencyData.slice(12, 19); // 7 days range of data
+      case "last30Days":
+        return latencyData.slice(12); // Data from Day 1 to Day 30
+      default:
+        return latencyData;
+    }
+  };
+
+  const filteredData = filterDataByRange();
+
   return (
     <motion.div
       className="bg-gray-800 bg-opacity-50 backdrop-blur-md shadow-lg rounded-xl p-6 border border-gray-700"
@@ -37,15 +43,60 @@ const LatencyOverviewChart = () => {
         <Send size={30} className="mr-4" color="green" />
         Latency Sensor Graph
       </span>
+
+      <div className="flex justify-center space-x-4 mb-4">
+        <button
+          className={`py-2 px-4 rounded ${
+            selectedRange === "last3Hours"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-600 text-gray-200"
+          }`}
+          onClick={() => setSelectedRange("last3Hours")}
+        >
+          Last 3 Hours
+        </button>
+        <button
+          className={`py-2 px-4 rounded ${
+            selectedRange === "last24Hours"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-600 text-gray-200"
+          }`}
+          onClick={() => setSelectedRange("last24Hours")}
+        >
+          Last 24 Hours
+        </button>
+        <button
+          className={`py-2 px-4 rounded ${
+            selectedRange === "last7Days"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-600 text-gray-200"
+          }`}
+          onClick={() => setSelectedRange("last7Days")}
+        >
+          Last 7 Days
+        </button>
+        <button
+          className={`py-2 px-4 rounded ${
+            selectedRange === "last30Days"
+              ? "bg-blue-500 text-white"
+              : "bg-gray-600 text-gray-200"
+          }`}
+          onClick={() => setSelectedRange("last30Days")}
+        >
+          Last 30 Days
+        </button>
+      </div>
+
       <h2 className="text-lg font-medium mb-4 text-gray-100 text-center">
         Temperature (°C)
       </h2>
+
       <div className="h-80">
         <ResponsiveContainer width={"100%"} height={"100%"}>
-          <LineChart data={internetData}>
+          <LineChart data={filteredData}>
             <CartesianGrid strokeDasharray="3 3" stroke="#4B5563" />
             <XAxis dataKey={"name"} stroke="#9ca3af" />
-            <YAxis dataKey={"sales"} stroke="#9ca3af" />
+            <YAxis dataKey={"temperature"} stroke="#9ca3af" />
             <Tooltip
               contentStyle={{
                 backgroundColor: "rgba(31, 41, 55, 0.8)",
@@ -55,7 +106,7 @@ const LatencyOverviewChart = () => {
             />
             <Line
               type="monotone"
-              dataKey="sales"
+              dataKey="temperature"
               stroke="#3182ce"
               strokeWidth={3}
               dot={{ fill: "#3182ce", strokeWidth: 2, r: 6 }}
